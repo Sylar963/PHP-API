@@ -21,7 +21,7 @@ class CreateTaskRequest extends FormRequest
             'status' => 'nullable|in:todo,in_progress,in_review,completed,cancelled',
             'priority' => 'nullable|in:low,medium,high,urgent',
             'project_id' => 'required|uuid|exists:projects,id',
-            'assigned_to' => 'nullable|uuid|exists:users,id',
+            'assigned_to' => 'nullable|integer|exists:users,id',
             'due_date' => 'nullable|date',
         ];
     }

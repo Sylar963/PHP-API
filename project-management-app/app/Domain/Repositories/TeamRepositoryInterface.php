@@ -16,7 +16,15 @@ interface TeamRepositoryInterface
 
     public function delete(string $id): void;
 
-    public function findByMemberId(string $userId): array;
+    public function findByMemberId(int $userId): array;
 
     public function existsById(string $id): bool;
+
+    public function addMember(string $teamId, int $userId): void;
+
+    public function removeMember(string $teamId, int $userId): void;
+
+    public function getMembers(string $teamId): array;
+
+    public function findByName(string $name): ?Team;
 }

@@ -33,14 +33,21 @@ class EloquentUserRepository implements UserRepositoryInterface
 
     public function save(User $user): void
     {
+        $data = [
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'role' => $user->getRole(),
+            'is_active' => $user->isActive(),
+        ];
+
+        // Only include password if it's set (for new users or password updates)
+        if ($user->getPassword()) {
+            $data['password'] = $user->getPassword();
+        }
+
         UserModel::updateOrCreate(
-            ['id' => $user->getId()],
-            [
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'role' => $user->getRole(),
-                'is_active' => $user->isActive(),
-            ]
+            ['id' => $user->getId() ?: null],
+            $data
         );
     }
 
@@ -73,7 +80,7 @@ class EloquentUserRepository implements UserRepositoryInterface
     private function toDomain(UserModel $model): User
     {
         return new User(
-            id: $model->id,
+            id: (string)$model->id,
             name: $model->name,
             email: $model->email,
             role: $model->role,

@@ -14,13 +14,10 @@ return new class extends Migration
             $table->text('description');
             $table->string('status')->default('todo');
             $table->string('priority')->default('medium');
-            $table->uuid('project_id');
-            $table->uuid('assigned_to')->nullable();
+            $table->foreignUuid('project_id')->constrained('projects')->onDelete('cascade');
+            $table->foreignId('assigned_to')->nullable()->constrained('users')->onDelete('set null');
             $table->dateTime('due_date')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->foreign('assigned_to')->references('id')->on('users')->onDelete('set null');
         });
     }
 

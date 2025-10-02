@@ -43,7 +43,7 @@ class ProjectController extends Controller
             name: $request->input('name'),
             description: $request->input('description'),
             status: $request->input('status'),
-            ownerId: auth()->id() ?? 'system',
+            ownerId: (string)(auth()->id() ?? 1), // Default to user ID 1 for testing
             startDate: $request->input('start_date') ? new \DateTimeImmutable($request->input('start_date')) : null,
             endDate: $request->input('end_date') ? new \DateTimeImmutable($request->input('end_date')) : null
         );

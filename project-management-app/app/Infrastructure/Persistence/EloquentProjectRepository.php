@@ -73,9 +73,9 @@ class EloquentProjectRepository implements ProjectRepositoryInterface
             name: $model->name,
             description: $model->description,
             status: $model->status,
-            ownerId: $model->owner_id,
-            startDate: $model->start_date ? new DateTimeImmutable($model->start_date) : null,
-            endDate: $model->end_date ? new DateTimeImmutable($model->end_date) : null
+            ownerId: (string)$model->owner_id,
+            startDate: $model->start_date ? new DateTimeImmutable($model->start_date->format('Y-m-d H:i:s')) : null,
+            endDate: $model->end_date ? new DateTimeImmutable($model->end_date->format('Y-m-d H:i:s')) : null
         );
     }
 }

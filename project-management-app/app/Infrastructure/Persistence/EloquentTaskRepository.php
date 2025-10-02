@@ -96,8 +96,8 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             status: $model->status,
             priority: $model->priority,
             projectId: $model->project_id,
-            assignedTo: $model->assigned_to,
-            dueDate: $model->due_date ? new DateTimeImmutable($model->due_date) : null
+            assignedTo: $model->assigned_to ? (string)$model->assigned_to : null,
+            dueDate: $model->due_date ? new DateTimeImmutable($model->due_date->format('Y-m-d H:i:s')) : null
         );
     }
 }

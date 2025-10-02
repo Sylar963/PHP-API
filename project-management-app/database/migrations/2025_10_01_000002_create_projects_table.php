@@ -13,12 +13,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('status')->default('planning');
-            $table->uuid('owner_id');
+            $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->timestamps();
-
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

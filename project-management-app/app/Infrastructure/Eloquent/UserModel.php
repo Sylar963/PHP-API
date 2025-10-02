@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Infrastructure\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserModel extends Model
 {
-    use HasUuids;
+    use HasApiTokens;
 
     protected $table = 'users';
 
@@ -23,12 +23,14 @@ class UserModel extends Model
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
 
     public function ownedProjects()
