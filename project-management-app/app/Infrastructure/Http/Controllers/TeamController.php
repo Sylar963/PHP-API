@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Infrastructure\Http\Controllers;
 
 use App\Application\Commands\CreateTeamCommand;
+use App\Application\Commands\UpdateTeamCommand;
 use App\Application\Services\TeamManagementService;
 use App\Infrastructure\Http\Requests\CreateTeamRequest;
+use App\Infrastructure\Http\Requests\UpdateTeamRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -44,6 +46,19 @@ class TeamController extends Controller
         $team = $this->teamManagementService->createTeam($command);
 
         return response()->json(['data' => $team->toArray()], 201);
+    }
+
+    public function update(UpdateTeamRequest $request, string $id): JsonResponse
+    {
+        $command = new UpdateTeamCommand(
+            id: $id,
+            name: $request->input('name'),
+            description: $request->input('description')
+        );
+
+        $team = $this->teamManagementService->updateTeam($command);
+
+        return response()->json(['data' => $team->toArray()]);
     }
 
     public function destroy(string $id): JsonResponse

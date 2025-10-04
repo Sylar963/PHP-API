@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Application\Services;
 
 use App\Application\Commands\CreateTeamCommand;
+use App\Application\Commands\UpdateTeamCommand;
 use App\Application\Handlers\CreateTeamHandler;
+use App\Application\Handlers\UpdateTeamHandler;
 use App\Application\DTOs\TeamDTO;
 use App\Domain\Repositories\TeamRepositoryInterface;
 
@@ -13,13 +15,20 @@ class TeamManagementService
 {
     public function __construct(
         private TeamRepositoryInterface $teamRepository,
-        private CreateTeamHandler $createTeamHandler
+        private CreateTeamHandler $createTeamHandler,
+        private UpdateTeamHandler $updateTeamHandler
     ) {
     }
 
     public function createTeam(CreateTeamCommand $command): TeamDTO
     {
         $team = $this->createTeamHandler->handle($command);
+        return TeamDTO::fromEntity($team);
+    }
+
+    public function updateTeam(UpdateTeamCommand $command): TeamDTO
+    {
+        $team = $this->updateTeamHandler->handle($command);
         return TeamDTO::fromEntity($team);
     }
 

@@ -11,6 +11,7 @@ use App\Application\Commands\UpdateTaskStatusCommand;
 use App\Application\DTOs\TaskDTO;
 use App\Application\Handlers\AssignTaskHandler;
 use App\Application\Handlers\CreateTaskHandler;
+use App\Application\Handlers\UpdateTaskHandler;
 use App\Application\Handlers\UpdateTaskStatusHandler;
 use App\Domain\Repositories\TaskRepositoryInterface;
 use App\Domain\Services\PermissionService;
@@ -21,6 +22,7 @@ class TaskManagementService
         private TaskRepositoryInterface $taskRepository,
         private CreateTaskHandler $createTaskHandler,
         private AssignTaskHandler $assignTaskHandler,
+        private UpdateTaskHandler $updateTaskHandler,
         private UpdateTaskStatusHandler $updateTaskStatusHandler,
         private PermissionService $permissionService
     ) {
@@ -41,6 +43,18 @@ class TaskManagementService
         }
 
         $task = $this->assignTaskHandler->handle($command);
+        return TaskDTO::fromEntity($task);
+    }
+
+    public function updateTask(UpdateTaskCommand $command, string $userId): TaskDTO
+    {
+        if (!$this->permissionService->canManageTask($userId, $command->taskId)) {
+            throw new \App\Application\Exceptions\UnauthorizedException(
+                "User does not have permission to update this task"
+            );
+        }
+
+        $task = $this->updateTaskHandler->handle($command);
         return TaskDTO::fromEntity($task);
     }
 

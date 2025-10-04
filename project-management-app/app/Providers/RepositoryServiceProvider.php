@@ -14,6 +14,8 @@ use App\Infrastructure\Persistence\EloquentProjectRepository;
 use App\Infrastructure\Persistence\EloquentTaskRepository;
 use App\Infrastructure\Persistence\EloquentUserRepository;
 use App\Infrastructure\Persistence\EloquentTeamRepository;
+use App\Infrastructure\Persistence\EloquentMilestoneRepository;
+use App\Infrastructure\Persistence\EloquentTimeEntryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -28,10 +30,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TaskRepositoryInterface::class, EloquentTaskRepository::class);
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind(TeamRepositoryInterface::class, EloquentTeamRepository::class);
-
-        // Add more bindings as you create the implementations
-        // $this->app->bind(MilestoneRepositoryInterface::class, EloquentMilestoneRepository::class);
-        // $this->app->bind(TimeEntryRepositoryInterface::class, EloquentTimeEntryRepository::class);
+        $this->app->bind(MilestoneRepositoryInterface::class, EloquentMilestoneRepository::class);
+        $this->app->bind(TimeEntryRepositoryInterface::class, EloquentTimeEntryRepository::class);
     }
 
     /**

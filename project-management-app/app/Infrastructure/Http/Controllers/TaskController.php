@@ -6,9 +6,11 @@ namespace App\Infrastructure\Http\Controllers;
 
 use App\Application\Commands\AssignTaskCommand;
 use App\Application\Commands\CreateTaskCommand;
+use App\Application\Commands\UpdateTaskCommand;
 use App\Application\Commands\UpdateTaskStatusCommand;
 use App\Application\Services\TaskManagementService;
 use App\Infrastructure\Http\Requests\CreateTaskRequest;
+use App\Infrastructure\Http\Requests\UpdateTaskRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -58,6 +60,24 @@ class TaskController extends Controller
         $task = $this->taskManagementService->createTask($command);
 
         return response()->json(['data' => $task->toArray()], 201);
+    }
+
+    public function update(UpdateTaskRequest $request, string $id): JsonResponse
+    {
+        $userId = auth()->id() ?? 'system';
+
+        $command = new UpdateTaskCommand(
+            taskId: $id,
+            title: $request->input('title'),
+            description: $request->input('description'),
+            status: $request->input('status'),
+            priority: $request->input('priority'),
+            dueDate: $request->input('due_date') ? new \DateTimeImmutable($request->input('due_date')) : null
+        );
+
+        $task = $this->taskManagementService->updateTask($command, $userId);
+
+        return response()->json(['data' => $task->toArray()]);
     }
 
     public function assign(Request $request, string $id): JsonResponse
