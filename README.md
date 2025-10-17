@@ -40,7 +40,7 @@ This repository contains a comprehensive project management application built wi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/PHP.git
+   git clone https://github.com/Sylar963/PHP.git
    cd PHP
    ```
 
