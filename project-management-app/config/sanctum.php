@@ -45,9 +45,11 @@ return [
     | considered expired. This will override any values set in the token's
     | "expires_at" attribute, but first-party sessions are not affected.
     |
+    | SECURITY: Set to 480 minutes (8 hours) for production security
+    |
     */
 
-    'expiration' => null,
+    'expiration' => env('SANCTUM_EXPIRATION', 480),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,9 +62,11 @@ return [
     |
     | See: https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning
     |
+    | SECURITY: Using 'pmapp_' prefix for GitHub secret scanning
+    |
     */
 
-    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', ''),
+    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', 'pmapp_'),
 
     /*
     |--------------------------------------------------------------------------

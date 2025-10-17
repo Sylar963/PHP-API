@@ -82,6 +82,15 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // SECURITY: Dedicated security event logging channel
+        'security' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/security.log'),
+            'level' => 'debug',
+            'days' => 90, // Keep security logs for 90 days
+            'replace_placeholders' => true,
+        ],
+
         'papertrail' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
