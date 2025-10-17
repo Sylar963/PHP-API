@@ -9,53 +9,53 @@ Your backend engineer needs to implement/verify these endpoints to support the n
 ## ✅ **High Priority (Critical for Core Features)**
 
 ### 1. **Authentication** (Should already exist)
-- [ ] `POST /api/auth/register` - Register new user
-- [ ] `POST /api/auth/login` - Login (return user + token)
-- [ ] `POST /api/auth/logout` - Logout
-- [ ] `GET /api/auth/user` - Get current user
-- [ ] Laravel Sanctum configured
-- [ ] CORS allows `http://localhost:3000`
+- [x] `POST /api/auth/register` - Register new user
+- [x] `POST /api/auth/login` - Login (return user + token)
+- [x] `POST /api/auth/logout` - Logout
+- [x] `GET /api/auth/user` - Get current user
+- [x] Laravel Sanctum configured
+- [x] CORS allows `http://localhost:3000`
 
 ### 2. **Projects** (Should already exist)
-- [ ] `GET /api/projects` - List all
-- [ ] `GET /api/projects/{id}` - Get one
-- [ ] `POST /api/projects` - Create
-- [ ] `PUT /api/projects/{id}` - Update
-- [ ] `DELETE /api/projects/{id}` - Delete
+- [x] `GET /api/projects` - List all
+- [x] `GET /api/projects/{id}` - Get one
+- [x] `POST /api/projects` - Create
+- [x] `PUT /api/projects/{id}` - Update
+- [x] `DELETE /api/projects/{id}` - Delete
 
 ### 3. **Tasks** (Should already exist)
-- [ ] `GET /api/tasks` - List all (with `?project_id=X` filter)
-- [ ] `GET /api/tasks/{id}` - Get one
-- [ ] `POST /api/tasks` - Create
-- [ ] `PUT /api/tasks/{id}` - Update
-- [ ] `DELETE /api/tasks/{id}` - Delete
-- [ ] ⭐ **`PUT /api/tasks/{id}/status`** - Update status (for drag-drop) **CRITICAL**
+- [x] `GET /api/tasks` - List all (with `?project_id=X` filter)
+- [x] `GET /api/tasks/{id}` - Get one
+- [x] `POST /api/tasks` - Create
+- [x] `PUT /api/tasks/{id}` - Update
+- [x] `DELETE /api/tasks/{id}` - Delete
+- [x] ⭐ **`PUT /api/tasks/{id}/status`** - Update status (for drag-drop) **CRITICAL**
 
 ### 4. **Teams** (Should already exist)
-- [ ] `GET /api/teams` - List all
-- [ ] `GET /api/teams/{id}` - Get one
-- [ ] `POST /api/teams` - Create
-- [ ] `PUT /api/teams/{id}` - Update
-- [ ] `DELETE /api/teams/{id}` - Delete
-- [ ] `GET /api/teams/{id}/members` - Get members (optional)
-- [ ] `POST /api/teams/{id}/members` - Add member (optional)
+- [x] `GET /api/teams` - List all
+- [x] `GET /api/teams/{id}` - Get one
+- [x] `POST /api/teams` - Create
+- [x] `PUT /api/teams/{id}` - Update
+- [x] `DELETE /api/teams/{id}` - Delete
+- [x] `GET /api/teams/{id}/members` - Get members (optional)
+- [x] `POST /api/teams/{id}/members` - Add member (optional)
 
 ### 5. **Users** (For Task Assignment)
-- [ ] `GET /api/users` - List all users **REQUIRED FOR DROPDOWN**
+- [x] `GET /api/users` - List all users **REQUIRED FOR DROPDOWN**
 
 ---
 
 ## ⭐ **NEW Features to Implement**
 
 ### 6. **Milestones** ⭐ NEW - MUST IMPLEMENT
-- [ ] Create `milestones` table (migration)
-- [ ] Create `MilestoneController`
-- [ ] `GET /api/milestones` - List all
-- [ ] `GET /api/milestones/{id}` - Get one
-- [ ] `POST /api/milestones` - Create
-- [ ] `PUT /api/milestones/{id}` - Update
-- [ ] `DELETE /api/milestones/{id}` - Delete
-- [ ] Include `project` relationship in response
+- [x] Create `milestones` table (migration)
+- [x] Create `MilestoneController`
+- [x] `GET /api/milestones` - List all
+- [x] `GET /api/milestones/{id}` - Get one
+- [x] `POST /api/milestones` - Create
+- [x] `PUT /api/milestones/{id}` - Update
+- [x] `DELETE /api/milestones/{id}` - Delete
+- [x] Include `project` relationship in response
 
 **Migration:**
 ```php
@@ -73,15 +73,15 @@ Schema::create('milestones', function (Blueprint $table) {
 ---
 
 ### 7. **Time Entries** ⭐ NEW - MUST IMPLEMENT
-- [ ] Create `time_entries` table (migration)
-- [ ] Create `TimeEntryController`
-- [ ] `GET /api/time-entries` - List all
-- [ ] `GET /api/time-entries/{id}` - Get one
-- [ ] `POST /api/time-entries` - Create
-- [ ] `PUT /api/time-entries/{id}` - Update
-- [ ] `DELETE /api/time-entries/{id}` - Delete
-- [ ] Include `task` relationship in response
-- [ ] Auto-set `user_id` to authenticated user
+- [x] Create `time_entries` table (migration)
+- [x] Create `TimeEntryController`
+- [x] `GET /api/time-entries` - List all
+- [x] `GET /api/time-entries/{id}` - Get one
+- [x] `POST /api/time-entries` - Create
+- [x] `PUT /api/time-entries/{id}` - Update
+- [x] `DELETE /api/time-entries/{id}` - Delete
+- [x] Include `task` relationship in response
+- [x] Auto-set `user_id` to authenticated user
 
 **Migration:**
 ```php
@@ -100,15 +100,15 @@ Schema::create('time_entries', function (Blueprint $table) {
 
 ## 🔧 **Configuration Checklist**
 
-- [ ] **CORS** configured to allow `http://localhost:3000`
-- [ ] **Laravel Sanctum** installed and configured
-- [ ] **API routes** use `auth:sanctum` middleware
-- [ ] **Response format** is `{ "data": {...} }` for all endpoints
-- [ ] **Dates** returned as `YYYY-MM-DD` format
-- [ ] **Timestamps** returned as ISO 8601 format
-- [ ] **Validation** returns 422 errors with messages
-- [ ] **Not found** returns 404 errors
-- [ ] **Unauthorized** returns 401 errors
+- [x] **CORS** configured to allow `http://localhost:3000`
+- [x] **Laravel Sanctum** installed and configured
+- [x] **API routes** use `auth:sanctum` middleware
+- [x] **Response format** is `{ "data": {...} }` for all endpoints
+- [x] **Dates** returned as `YYYY-MM-DD` format
+- [x] **Timestamps** returned as ISO 8601 format
+- [x] **Validation** returns 422 errors with messages
+- [x] **Not found** returns 404 errors
+- [x] **Unauthorized** returns 401 errors
 
 ---
 
